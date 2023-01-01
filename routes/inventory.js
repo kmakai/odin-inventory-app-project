@@ -3,7 +3,7 @@ const router = express.Router();
 
 // import controllers
 const productController = require("../controllers/productController");
-const departmentController = require("../controllers/departmentController");
+const departmentController = require("../controllers/DepartmentController");
 
 // get full inventory/home page
 router.get("/", productController.index);
@@ -65,3 +65,5 @@ router.get("/department/:id", departmentController.departmentDetail);
 
 // GET departments list
 router.get("/departments", departmentController.departmentsList);
+
+module.exports = router;
