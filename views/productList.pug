@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+
+  h1= title 
+
+  ul 
+    each item in products 
+      li 
+        a(href=item.url) #{item.name} in #{item.department.name}
+
+    else 
+      li Sorry there are no products!!

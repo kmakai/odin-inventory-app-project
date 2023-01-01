@@ -1,6 +1,18 @@
+const Product = require("../models/Product");
+const Department = require("../models/Department");
+
 // get departments list
 exports.departmentsList = (req, res, next) => {
-  res.send("Not yet implemented");
+  Department.find({})
+    .sort({ name: 1 })
+    .exec(function (err, result) {
+      if (err) return next(err);
+
+      res.render("departmentList", {
+        title: "Departments List",
+        departments: result,
+      });
+    });
 };
 
 // get department detail

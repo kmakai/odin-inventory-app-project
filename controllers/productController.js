@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const Department = require("../models/Department");
 
 const { body, validationResult } = require("express-validator");
 
@@ -6,12 +7,35 @@ const async = require("async");
 
 // products index
 exports.index = (req, res, next) => {
-  res.send("Home not implemented");
+  async.parallel(
+    {
+      productCount(callback) {
+        Product.countDocuments({}, callback);
+      },
+      departmentCount(callback) {
+        Department.countDocuments({}, callback);
+      },
+    },
+    (err, results) => {
+      res.render("index", {
+        title: "Product Inventory",
+        error: err,
+        data: results,
+      });
+    }
+  );
 };
 
 // get products list
 exports.productsList = (req, res, next) => {
-  res.send("Not yet implemented");
+  Product.find({}, "name department")
+    .sort({ name: 1 })
+    .populate("department")
+    .exec(function (err, result) {
+      if (err) return next(err);
+
+      res.render("productList", { title: "Products list", products: result });
+    });
 };
 
 // get product detail

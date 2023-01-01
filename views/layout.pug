@@ -2,6 +2,26 @@ doctype html
 html
   head
     title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    div(class="container")
+      div(class="sideNav")
+        ul(class="nav")
+          li 
+            a(href="/inventory") Home 
+          li 
+            a(href="/inventory/products") All Products 
+          li 
+            a(href="/inventory/departments") All Departments 
+
+          hr
+          li 
+            a(href="/inventory/department/create") Add New Department 
+          li 
+            a(href="/inventory/product/create") Add New Product
+
+      div(class="main")
+        block content
+          

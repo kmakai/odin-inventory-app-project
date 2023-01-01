@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+
+  h1= title
+
+  h2 Departments 
+
+  ul 
+    each dep in departments
+      li 
+        a(href=dep.url) #{dep.name}
+    else 
+      p Sorry there are no departments!

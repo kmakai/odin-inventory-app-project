@@ -2,4 +2,14 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to the #{title}, where you manage the inventory of your businness.
+
+  h2 Products and Departments available 
+
+  if error
+    p There was an error getting your inventory 
+  else 
+    ul 
+      li #[strong Products:] !{data.productCount}
+      li #[strong Departments:] !{data.departmentCount}
+
