@@ -19,3 +19,25 @@ ul {
   grid-template-columns: 1fr 4fr;
   gap: 50px;
 }
+
+img {
+  width: 400px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: flex-start; */
+  gap: 2rem;
+  max-width: 50%;
+}
+
+form label {
+  font-size: 1rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,42 @@
+extends layout 
+
+block content 
+  h1= title 
+
+  form(method="POST" action="") 
+    .form-field 
+      label(for="name") Product Name: 
+      input(type="text", name="name" required="true" placeholder="jacket, watch ect.." value=(product===undefined ? "" : product.name)) 
+
+    .form-field 
+      label(for="product-description") Product description:
+      textarea(name="product-description", cols="30", rows="10" required='true' value=(product===undefined ? "" : product.description)) 
+
+    .form-field 
+      label(for="product-price") Product price:
+      input(type="number", name="poduct-price" required='true' min='1' value=(product===undefined ? "" : product.price))
+
+    .form-field 
+      label(for="product-count") Inventory count:
+      input(type="number", name="product-count" required='true' min='1' value=(product===undefined ? "" : product.instock_count)) 
+
+    .form-field 
+      label(for="department") Department
+      select(type="select" name="department" placeholder="Select department" required="true") 
+        //- - departments.sort((a, b) =>{
+        //-   let deptA = a.name.toUpperCase();
+        //-   let deptB = b.name.toUpperCase();
+
+        //-   return deptA - Dep
+        //- })
+        for dept in departments 
+          if product 
+            option(value=dept._id selected=(dept._id.toString() === product.department._id || dept._id.toString() === product.department) ? "selected" : false) #{dept.name}
+
+          else 
+            option(value=dept._id) #{dept.name}
+
+      p If the department is not listed please add 
+        a(href='../department/create')  new department
+
+    button(type="submit") Submit 

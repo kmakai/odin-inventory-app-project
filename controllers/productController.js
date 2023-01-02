@@ -40,12 +40,30 @@ exports.productsList = (req, res, next) => {
 
 // get product detail
 exports.productDetail = (req, res, next) => {
-  res.send("Not yet implemented");
+  Product.findById(req.params.id)
+    .populate("department")
+    .exec(function (err, result) {
+      if (err) return next(err);
+
+      res.render("productDetail", {
+        title: result.name,
+        product: result,
+      });
+    });
 };
 
 // create product GET
 exports.productCreateGet = (req, res, next) => {
-  res.send("Not yet implemented");
+  Department.find({}, "name")
+    .sort({ name: 1 })
+    .exec(function (err, departments) {
+      if (err) return next(err);
+
+      res.render("productForm", {
+        title: "Add New Product",
+        departments: departments,
+      });
+    });
 };
 
 // create product POST

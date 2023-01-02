@@ -1,0 +1,11 @@
+extends layout 
+
+block content 
+  h1 Product name: #{title[0].toUpperCase()+title.slice(1)}
+
+  img(src=product.image, alt=product.name)
+  p #[strong Description: ] #{product.description}
+  p #[strong Price: ] #{product.price}
+  p #[strong In Inventory: ] #{product.instock_count}
+  p #[strong In department: ] 
+    a(href=product.department.url)  #{product.department.name}
