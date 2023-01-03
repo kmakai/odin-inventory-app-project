@@ -9,16 +9,16 @@ block content
       input(type="text", name="name" required="true" placeholder="jacket, watch ect.." value=(product===undefined ? "" : product.name)) 
 
     .form-field 
-      label(for="product-description") Product description:
-      textarea(name="product-description", cols="30", rows="10" required='true' value=(product===undefined ? "" : product.description)) 
+      label(for="productdescription") Product description:
+      textarea(name="productdescription", cols="30", rows="10" required='true') #{product===undefined ? "" : product.description} 
 
     .form-field 
-      label(for="product-price") Product price:
-      input(type="number", name="poduct-price" required='true' min='1' value=(product===undefined ? "" : product.price))
+      label(for="productprice") Product price:
+      input(type="number", name="productprice" required='true' min='1' value=(product===undefined ? "" : product.price))
 
     .form-field 
-      label(for="product-count") Inventory count:
-      input(type="number", name="product-count" required='true' min='1' value=(product===undefined ? "" : product.instock_count)) 
+      label(for="productcount") Inventory count:
+      input(type="number", name="productcount" required='true' min='1' value=(product===undefined ? "" : product.instock_count)) 
 
     .form-field 
       label(for="department") Department
@@ -31,7 +31,7 @@ block content
         //- })
         for dept in departments 
           if product 
-            option(value=dept._id selected=(dept._id.toString() === product.department._id || dept._id.toString() === product.department) ? "selected" : false) #{dept.name}
+            option(value=dept._id selected=(product.department.name===dept.name ? true : false)) #{dept.name}
 
           else 
             option(value=dept._id) #{dept.name}
@@ -40,3 +40,8 @@ block content
         a(href='../department/create')  new department
 
     button(type="submit") Submit 
+
+  if errors 
+    ul 
+      for err in errors 
+        li!= err.msg

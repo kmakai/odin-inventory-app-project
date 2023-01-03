@@ -9,3 +9,8 @@ block content
   p #[strong In Inventory: ] #{product.instock_count}
   p #[strong In department: ] 
     a(href=product.department.url)  #{product.department.name}
+
+  hr
+
+  p 
+    a(href=product.url+'/update') Update product

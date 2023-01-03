@@ -12,7 +12,7 @@ const productSchema = new Schema({
     ref: "Department",
     required: true,
   },
-  image: { type: String, required: true },
+  image: { type: String, required: false },
 });
 
 productSchema.virtual("url").get(function () {
