@@ -215,10 +215,27 @@ exports.productUpdatePost = [
 
 // delete product GET
 exports.productDeleteGet = (req, res, next) => {
-  res.send("Not yet implemented");
+  Product.findById(req.params.id)
+    .populate("department")
+    .exec(function (err, product) {
+      if (err) return next(err);
+
+      if (product == null) {
+        res.redirect("inventory/products");
+      }
+
+      res.render("productDelete", {
+        title: "Delete product",
+        product,
+      });
+    });
 };
 
 // delete product POST
 exports.productDeletePost = (req, res, next) => {
-  res.send("Not yet implemented");
+  Product.findByIdAndRemove(req.params.id.trim(), (err) => {
+    if (err) return next(err);
+
+    res.redirect("/inventory/products");
+  });
 };

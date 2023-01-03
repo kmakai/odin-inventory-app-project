@@ -2,18 +2,16 @@ extends layout
 
 block content 
   h1=title
+  h2 Product name: #{product.name}
 
-  img(src=product.image, alt=product.name)
   p #[strong Description: ] #{product.description}
   p #[strong Price: ] #{product.price}
   p #[strong In Inventory: ] #{product.instock_count}
   p #[strong In department: ] 
     a(href=product.department.url)  #{product.department.name}
 
-  hr
-
-  p 
-    a(href=product.url+'/update') Update product
-
-  p 
-    a(href=product.url+'/delete') Delete product
+  form(action="", method="post") 
+    p Are you sure you want to remove this product?
+    div  
+      input(type="hidden", name="id", required="true" value=product.id)
+    button(type="submit") Delete Product.
