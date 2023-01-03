@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+  h1=title 
+
+  h4 Items in this department 
+
+  ul
+    each item in items 
+      li 
+        a(href=item.url) #{item.name} 
+        | - #{item.description}
+
+    else 
+      p There are no items for this department
+
+  hr
+
+  p 
+    a(href=department.url+'/update') Update department
+
+  p 
+    a(href=department.url+'/delete') Delete department

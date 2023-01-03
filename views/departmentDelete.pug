@@ -1,0 +1,24 @@
+extends layout 
+
+block content 
+
+  h1 Delete Department: #{department.name}
+
+  if items.length 
+    p #[strong These following products are still in this department. Please remove them before you delete the department:]
+
+    div 
+      h4 items: 
+
+      ul 
+        each item in items
+          li 
+            a(href=item.url) #{item.name} 
+
+  else 
+    p Do you really want to delete this department?
+
+    form(action="", method="post") 
+      .form-field 
+        input(type="hidden", name="id", required="true", value=department.id)
+      button(type="submit") Delete Department

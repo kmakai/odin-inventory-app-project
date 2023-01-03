@@ -4,7 +4,6 @@ const Department = require("../models/Department");
 const { body, validationResult } = require("express-validator");
 
 const async = require("async");
-const { collection } = require("../models/Product");
 
 // products index
 exports.index = (req, res, next) => {
